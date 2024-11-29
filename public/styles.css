@@ -1,0 +1,498 @@
+*{
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+body{
+  background:scroll;
+  min-height: 100 vh;
+  font-family: "Montserrat", sans-serif;
+  height: auto;
+  width: 100%;
+  /* background: linear-gradient(135deg,#FFBD73,#C6E7FF,#D4F6FF,#FBFBFB,#FFDDAE); */
+  background: linear-gradient(to right, #e3f2fd, #ffffff);
+
+
+}
+ 
+nav{
+  position: sticky;
+  z-index: 1000;
+  padding-top: 0px;
+  font-weight: bold;
+  background: #fff;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+.logo{
+  font-size: 20px;
+}
+
+nav ul{
+  padding-top: 0px;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+nav li{
+  height: 50px;
+}
+nav a{
+  height: 100%;
+  padding: 0 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  border-radius: 400%;
+  
+}
+nav a:hover{
+  height: 40px;
+  background-color: #f0f0f0;
+  border-color: #baa7a7;
+}
+nav li:first-child{
+  margin-right: auto;
+}
+.sidebar{
+  position: sticky;
+  z-index: 1000;
+  top: 0; 
+  right: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.sidebar li{
+  width: 100%;
+}
+.sidebar a{
+  width: 100%;
+}
+.menu-button{
+  display: none;
+}
+@media(max-width: 800px){
+  .hideOnMobile{
+    display: none;
+  }
+  .menu-button{
+    display: block;
+  }
+}
+@media(max-width: 400px){
+  .sidebar{
+    width: 100%;
+  }
+}
+
+
+li{
+  border-radius: 100px;
+}
+ul{
+  padding-top: 0px;
+}
+.container {
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+gap: 80px; /* Larger gap between elements */
+justify-content: center;
+align-items: flex-start;
+}
+
+.card-container {
+display: flex;
+gap: 20px; /* Gap between cards */
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.card {
+background: #ffffff;
+border: 1px solid #ddd;
+border-radius: 10px;
+padding: 20px;
+text-align: center;
+width: 250px; /* Larger card width */
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+min-height: 400px;
+}
+
+.card img {
+max-width: 100%;
+border-radius: 8px;
+}
+
+.card h3 {
+font-size: 20px; /* Larger font size */
+margin: 15px 0;
+}
+
+.card p {
+font-size: 16px; /* Larger font size */
+color: #555;
+}
+
+.card:hover {
+transform: scale(1.05);
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.form-container {
+background: #ffffff;
+border: 1px solid #ddd;
+border-radius: 10px;
+padding: 40px;
+width: 100%;
+max-width: 350px; /* Larger form width */
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+transform: scale(1.03);
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.form-container h4 {
+margin-bottom: 15px;
+font-size: 22px; /* Larger font size */
+text-align: center;
+}
+
+.form-container p {
+margin-bottom: 10px;
+font-size: 16px; /* Larger font size */
+color: #666;
+text-align: center;
+}
+
+.form-container form {
+display: flex;
+flex-direction: column;
+gap: 10px; /* Larger gap between form fields */
+}
+
+.form-container input {
+padding: 8px;
+font-size: 16px;
+border: 1px solid #ddd;
+border-radius: 5px;
+width: 100%;
+}
+
+.form-container button {
+padding: 12px;
+font-size: 18px;
+color: #fff;
+background: #007BFF;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+background: #0056b3;
+}
+
+@media (max-width: 1024px) {
+.container {
+  flex-direction: column;
+  align-items: center;
+  gap: 30px; /* Adjust gap for smaller screens */
+}
+
+.card-container {
+  gap: 15px; /* Reduced gap for smaller screens */
+}
+
+.card {
+  width: 220px; /* Smaller card width for tablets */
+
+}
+
+.form-container {
+  max-width: 320px; /* Adjusted form width for tablets */
+}
+}
+
+@media (max-width: 768px) {
+.card {
+  
+  height:auto;
+  width: 70%; /* Full-width cards for mobile */
+}
+
+.form-container {
+  max-width: 70%; /* Full-width form for mobile */
+}
+.container{
+  flex-direction: column-reverse;
+}
+}
+
+.heading-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 20px;
+padding-bottom: 5%;
+padding-top: 3%;
+}
+
+.heading-container h1 {
+font-size: 3rem; /* Default size for large screens */
+color: #333;
+margin-bottom: 10px;
+}
+
+.heading-container p {
+font-size: 1.5rem; /* Default size for large screens */
+color: #131212;
+}
+
+@media (max-width: 768px) {
+.heading-container h1 {
+  font-size: 2.5rem; /* Adjust size for tablets */
+}
+
+.heading-container p {
+  font-size: 1.2rem; /* Adjust size for tablets */
+}
+}
+
+@media (max-width: 480px) {
+.heading-container h1 {
+  font-size: 2rem; /* Adjust size for mobile */
+}
+
+.heading-container p {
+  font-size: 1rem; /* Adjust size for mobile */
+}
+}
+
+.consult-section {
+  text-align: center;
+  padding: 50px 20px;
+  background: linear-gradient(to right, #e3f2fd, #ffffff);
+}
+
+.consult-section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.consult-section p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.card-container-legalservices {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card-legalservices {
+  width: 200px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-legalservices img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.card-legalservices h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.card-legalservices button {
+  font-size: 14px;
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+  border: #fff;
+  background: white;
+}
+
+.card-legalservices:hover {
+  transform: scale(1.05);
+}
+
+
+
+.article-section {
+  padding: 20px;
+  
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  font-size: 24px;
+  margin: 0 0 10px;
+}
+
+.section-header p {
+  font-size: 16px;
+  color: #666;
+}
+
+.see-all-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.article-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px;
+  scroll-behavior: smooth;
+}
+
+.article-card {
+  flex: 0 0 250px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+}
+.article-card:hover{
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+.article-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.article-card h3 {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #333;
+}
+
+.article-card p {
+  font-size: 14px;
+  color: #777;
+}
+
+.article-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.article-carousel::-webkit-scrollbar-thumb {
+  background-color: #adaeb161;
+  border-radius: 10px;
+}
+
+
+.footer-div{
+  background: white;
+  height: auto;
+}
+
+.reviews-section {
+  padding: 20px;
+  
+}
+
+.reviews-section h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.reviews-carousel {
+  display: flex;
+  overflow-x: hidden; /* Hides content that scrolls out of view */
+  gap: 15px;
+  padding: 10px;
+  scroll-behavior: smooth;
+}
+
+.review-card {
+  flex: 0 0 300px;
+  background-color: #fffdfd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+.review-card p {
+  font-size: 16px;
+  color: #a49c9c;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.review-card span {
+  font-size: 14px;
+  color: #777;
+  font-style: italic;
+}
+
+.reviews-carousel::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar for a cleaner look */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

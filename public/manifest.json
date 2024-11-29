@@ -1,0 +1,9 @@
+{
+    "name":"Vakeelsaab",
+    "short_name":"Vakeelsaab",
+    "start_url":"/?home=true",
+    "icons": [],
+    "display":"fullscreen",
+    "orientation":"potrait"
+
+}
