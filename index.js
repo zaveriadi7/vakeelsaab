@@ -11,15 +11,37 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static('public'));
+import dotenv from 'dotenv';
+dotenv.config();
+// const pool = new Pool({
+//     user: 'postgres',    
+//     host: 'localhost',
+//     database: 'vakeelsahab',   
+//     password: 'tiger', 
+//     port: 5432,               
+// });
+//const DB_URL = 'postgresql://vakeelsahab_user:7gFOFPP5M772yZWt9XsWtDwBR3reXKIf@dpg-ct4pvm1u0jms73a9rt50-a/vakeelsahab';
+
+const DB_URL = process.env.DB_URL;
 
 const pool = new Pool({
-    user: 'postgres',    
-    host: 'localhost',
-    database: 'vakeelsahab',   
-    password: 'tiger', 
-    port: 5432,               
+    connectionString: DB_URL,
+    ssl: {
+        rejectUnauthorized: false  // Set to false for self-signed certificates (if using a service like Render or AWS)
+    }
 });
 
+
+ 
+  app.get('/test-db', async (req, res) => {
+    try {
+      const result = await pool.query('SELECT NOW()'); // A simple query to check DB connection
+      res.send(`Database Connected! Current time: ${result.rows[0].now}`);
+    } catch (err) {
+      console.error('Database connection error:', err);
+      res.status(500).send('Failed to connect to the database');
+    }
+  });
 app.get('/',(req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 
