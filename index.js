@@ -20,7 +20,6 @@ dotenv.config();
 //     password: 'tiger', 
 //     port: 5432,               
 // });
-//const DB_URL = 'postgresql://vakeelsahab_user:7gFOFPP5M772yZWt9XsWtDwBR3reXKIf@dpg-ct4pvm1u0jms73a9rt50-a/vakeelsahab';
 
 const DB_URL = process.env.DB_URL;
 
@@ -53,7 +52,7 @@ app.post('/contact',async (req,res)=>{
     try {
         // Insert data into the contacts table
         await pool.query(
-            'INSERT INTO contact_us VALUES ($1, $2, $3)',
+            'INSERT INTO consultations (name, email, phone_number) values ($1, $2, $3)',
             [name, email, phone_number]
         );
         console.log('Contact saved:', { name, email, phone_number });
@@ -71,19 +70,36 @@ app.post('/contact',async (req,res)=>{
 app.post('/consult',async (req,res)=>{
     res.sendFile(path.join(__dirname, 'public', 'consultationrequest.html'));
 })
+app.post('/submit-lawyer', async (req, res) => {
+    const { first_name, last_name, email, phone, specialization, license_number, license_expiry, address, city, state, country } = req.body;
 
+    const query = `
+        INSERT INTO lawyers (first_name, last_name, email, phone, specialization, license_number, license_expiry, address, city, state, country)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+    `;
+
+    try {
+        await pool.query(query, [first_name, last_name, email, phone, specialization, license_number, license_expiry, address, city, state, country]);
+        res.sendFile(path.join(__dirname, 'public', 'lawyer_registration_success.html'));
+        
+
+    } catch (err) {
+        console.error('Error inserting data: ', err);
+        res.sendFile(path.join(__dirname, 'public', 'error.html'));
+    }
+});
 app.post('/requestconsult',async (req,res)=>{
-    const { name, email, number, issue,date,description } = req.body;
+    const { name, email, number, issue,date,description,slotTiming} = req.body;
     console.log(date);
     console.log(description);
-    console.log('Consult saved:', { name, email, number,issue,date,description });
+    console.log('Consult saved:', { name, email, number,issue,date,description,slotTiming });
     try {
         const query = `
-            INSERT INTO consultations (name, email, phone_number, issue_type, dispute_date, description)
-            VALUES ($1, $2, $3, $4, $5, $6)
+            INSERT INTO consultations (name, email, phone_number, issue_type, dispute_date, description,slot_timing)
+            VALUES ($1, $2, $3, $4, $5, $6,$7)
         `;
-        await pool.query(query, [name, email, number, issue, date, description]);
-        res.sendFile(path.join(__dirname, 'public', 'registered.html'));
+        await pool.query(query, [name, email, number, issue, date, description,slotTiming]);
+        res.sendFile(path.join(__dirname, 'public', 'succesful_additionaldetails.html'));
         
     } catch (error) {
         console.error('Error inserting data:', error);
@@ -92,6 +108,28 @@ app.post('/requestconsult',async (req,res)=>{
     }
 });
     
+app.post('/additional',async (req,res)=>{
+    const {number,issue,date,description,slotTiming } = req.body;
+    console.log(date);
+    console.log(description);
+    console.log('Additional details saved:', { number,issue,date,description });
+    try {
+        const query = `
+            UPDATE consultations SET issue_type = $1,dispute_date = $2,description = $3,slot_timing = $4  WHERE phone_number = $5;
+        `;
+        await pool.query(query, [issue, date, description, slotTiming ,number]);
+        res.sendFile(path.join(__dirname, 'public', 'succesful_additionaldetails.html'));
+        
+    } catch (error) {
+        console.error('Error inserting data:', error);
+        res.status(500).send('An error occurred.');
+        res.sendFile(path.join(__dirname, 'public', 'error.html'));
+    }
+    
+})
+
+
+
 app.listen(port, () => {
     console.log(`Server is running on port http://localhost:${port}`);
 });

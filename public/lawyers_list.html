@@ -15,6 +15,7 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="62768023581-q1d2snojv1eem9t3mj2lje3bcegvqpu3.apps.googleusercontent.com">
 
+
 <style>
   
 .form-container {
@@ -111,25 +112,34 @@
         </ul>
     </nav>
     <div class="heading-container" style="justify-content: center;">
-      <h3>Give your basic details.</h3>
-      <p>Our team will contact within 24 Hours.</p>
+      <h3>Welcome to our team.</h3>
+      <p>Help us bring a change for the community!</p>
     </div>
 
     <div class="form-container">
-        <h3>GIVE DETAILS FOR CONSULTATION!</h3>
-        <p>Get your free consultation!</p>
-        <form action="/requestconsult" method="post">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" placeholder="Name">
-        
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" placeholder="Email" required>
-              
-          <label for="number">Phone Number:</label>
-          <input type="text" id="number" name="number" placeholder="Phone Number" required>
-
-          <label for="issue">Dispute Issue:</label>
-              <select id="issue" name="issue" required>
+        <h3>Please give your details</h3>
+        <p> This helps us to show you relevant clients</p>
+        <!-- lawyer_form.ejs -->
+<form action="/submit-lawyer" method="POST">
+    <div>
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required>
+    </div>
+    <div>
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone">
+    </div>
+    <div>
+        <label for="specialization">Specialization:</label>
+              <select id="specialization" name="specialization" required>
                 <option value="" disabled selected>Select your issue</option>
                 <option value="Legal Advice">Legal Advice</option>
                 <option value="Document Review">Document Review</option>
@@ -138,19 +148,33 @@
                 <option value="Family Law">Family Law</option>
                 <option value="Corporate Law">Corporate Law</option>
                </select>
-
-          <label for="date">Dispute Date:</label>
-          <input type="date" id="date" name="date" placeholder="Date">
-
-          <label for="description">Dispute Description:</label>
-          <input type="text" id="description" name="description" placeholder="Description">
-          <label for="slotTiming">Select Preferred Consultation Slot:</label>
-          <select id="slotTiming" name="slotTiming">
-              <option value="5 PM - 7 PM">5 PM - 7 PM</option>
-              <option value="7 PM - 9 PM">7 PM - 9 PM</option>
-          </select>
-          <button type="submit">Submit</button>
-        </form>
+    </div>
+    <div>
+        <label for="license_number">License Number:</label>
+        <input type="text" id="license_number" name="license_number" required>
+    </div>
+    <div>
+        <label for="license_expiry">License Expiry Date:</label>
+        <input type="date" id="license_expiry" name="license_expiry">
+    </div>
+    <div>
+        <label for="address">Address:</label>
+        <textarea id="address" name="address"></textarea>
+    </div>
+    <div>
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city">
+    </div>
+    <div>
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state">
+    </div>
+    <div>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country">
+    </div>
+    <button type="submit">Submit</button>
+</form>
       </div>
 
 <br>
