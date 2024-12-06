@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import methodOverride from 'method-override';
 import pkg from 'pg';
 const { Pool } = pkg;
 const __filename = fileURLToPath(import.meta.url);
@@ -41,6 +42,8 @@ const pool = new Pool({
       res.status(500).send('Failed to connect to the database');
     }
   });
+
+
 app.get('/',(req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 
@@ -127,7 +130,33 @@ app.post('/additional',async (req,res)=>{
     }
     
 })
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride('_method')); // Middleware for overriding POST to DELETE
 
+app.route('/protected')
+    // GET method to fetch and display consultations
+    .get(async (req, res) => {
+        try {
+            const result = await pool.query('SELECT * FROM consultations');
+            res.render('consultation_display', { consultations: result.rows });
+        } catch (err) {
+            console.error('Error fetching consultations:', err);
+            res.status(500).send('Error fetching consultations');
+        }
+    });
+
+// Route to handle deletion of a consultation (using POST but overriding to DELETE)
+app.post('/consultations/:phone_number', async (req, res) => {
+    const { phone_number } = req.params; // Get the phone number from the URL parameters
+    try {
+        await pool.query('DELETE FROM consultations WHERE phone_number = $1', [phone_number]);
+        res.redirect('/protected'); // Redirect back to the consultations page after successful deletion
+    } catch (err) {
+        console.error('Error deleting consultation:', err);
+        res.status(500).send('Error deleting consultation');
+    }
+});
 
 
 app.listen(port, () => {
