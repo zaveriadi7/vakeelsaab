@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultations</title>
+    
+<!-- Link to CSS file -->
+ <style>
+    /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+.delete-btn {
+    background-color: #e74c3c; /* Red background color */
+    color: white; /* White text color */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+}
+
+.delete-btn:hover {
+    background-color: #c0392b; /* Darker red when hovered */
+}
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00b3ff;
+}
+
+/* Table Styles */
+.table-container {
+    overflow-x: auto; /* Makes the table scrollable on small screens */
+    margin-top: 20px;
+}
+
+.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.responsive-table th,
+.responsive-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.responsive-table thead {
+    background-color: #4090e0;
+    color: white;
+}
+
+.responsive-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.responsive-table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .responsive-table thead {
+        display: none; /* Hides the table header on small screens */
+    }
+
+    .responsive-table tr {
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    .responsive-table td {
+        display: flex;
+        justify-content: space-between;
+        text-align: right;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .responsive-table td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: left;
+    }
+}
+ </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Consultations</h1>
+        <div class="table-container">
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Issue Type</th>
+                        <th>Dispute Date</th>
+                        <th>Description</th>
+                        <th>Submitted At</th>
+                        <th>Slot Timing</th>
+                        <th>Actions</th> <!-- Column for delete button -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <% consultations.forEach(consultation => { %>
+                        <tr>
+                            <td><%= consultation.name %></td>
+                            <td><%= consultation.email %></td>
+                            <td><%= consultation.phone_number %></td>
+                            <td><%= consultation.issue_type %></td>
+                            <td><%= consultation.dispute_date %></td>
+                            <td><%= consultation.description %></td>
+                            <td><%= consultation.submitted_at %></td>
+                            <td><%= consultation.slot_timing %></td>
+                            <td>
+                                <!-- Delete button -->
+                                <form action="/consultations/<%= consultation.phone_number %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this consultation?');">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="delete-btn">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
