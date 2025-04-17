@@ -6,7 +6,7 @@
   <title>Registered Lawyers</title>
   
   <style>
-    /* Global Reset */
+
 * {
   margin: 0;
   padding: 0;
@@ -26,7 +26,6 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* Container for the table */
 .table-container {
   max-width: 90%;
   margin: 0 auto;
@@ -37,7 +36,7 @@ h1 {
   overflow-x: auto;
 }
 
-/* Table Styles */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -74,7 +73,6 @@ td button:hover {
   background-color: #c82333;
 }
 
-/* No lawyers message */
 p {
   text-align: center;
   font-size: 18px;
@@ -101,8 +99,7 @@ p {
           <th>City</th>
           <th>State</th>
           <th>Country</th>
-          <th>Action</th> <!-- Add action column for delete button -->
-        </tr>
+          <th>Action</th> 
       </thead>
       <tbody>
         <% lawyers.forEach(lawyer => { %>
@@ -119,7 +116,6 @@ p {
             <td><%= lawyer.state %></td>
             <td><%= lawyer.country %></td>
             <td>
-              <!-- Delete button that sends a request to delete using the phone number -->
               <form action="/lawyers/delete" method="POST" style="display:inline;">
                 <input type="hidden" name="phone" value="<%= lawyer.phone %>">
                 <button type="submit" onclick="return confirm('Are you sure you want to delete this lawyer?')">Delete</button>

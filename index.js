@@ -14,28 +14,29 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static('public'));
 import dotenv from 'dotenv';
 dotenv.config();
-// const pool = new Pool({
-//     user: 'postgres',    
-//     host: 'localhost',
-//     database: 'vakeelsahab',   
-//     password: 'tiger', 
-//     port: 5432,               
-// });
-
-const DB_URL = process.env.DB_URL;
-
+// local host config
 const pool = new Pool({
-    connectionString: DB_URL,
-    ssl: {
-        rejectUnauthorized: false  // Set to false for self-signed certificates (if using a service like Render or AWS)
-    }
+    user: 'postgres',    
+    host: 'localhost',
+    database: 'vakeelsahab',   
+    password: 'tiger', 
+    port: 5432,               
 });
+
+
+//const DB_URL = process.env.DB_URL;
+// const pool = new Pool({
+//     connectionString: DB_URL,
+//     ssl: {
+//         rejectUnauthorized: false  
+//     }
+// });
 
 
  
 app.get('/test-db', async (req, res) => {
     try {
-      const result = await pool.query('SELECT NOW()'); // A simple query to check DB connection
+      const result = await pool.query('SELECT NOW()'); 
       res.send(`Database Connected! Current time: ${result.rows[0].now}`);
     } catch (err) {
       console.error('Database connection error:', err);
@@ -46,21 +47,19 @@ app.get('/test-db', async (req, res) => {
 
 app.get('/',(req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-
 });
 
 app.post('/contact',async (req,res)=>{
     const { name, email, number: phone_number } = req.body;
 
     try {
-        // Insert data into the contacts table
+        
         await pool.query(
             'INSERT INTO consultations (name, email, phone_number) values ($1, $2, $3)',
             [name, email, phone_number]
         );
         console.log('Contact saved:', { name, email, phone_number });
 
-        // Redirect or respond after storing data
         res.sendFile(path.join(__dirname, 'public', 'registered.html'));
     } catch (err) {
         console.error('Error saving contact:', err);
@@ -132,10 +131,10 @@ app.post('/additional',async (req,res)=>{
 })
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(methodOverride('_method')); // Middleware for overriding POST to DELETE
+app.use(methodOverride('_method')); 
 
 app.route('/protected')
-    // GET method to fetch and display consultations
+// display consultations
     .get(async (req, res) => {
         try {
             const result = await pool.query('SELECT * FROM consultations');
@@ -146,12 +145,12 @@ app.route('/protected')
         }
     });
 
-// Route to handle deletion of a consultation (using POST but overriding to DELETE)
+
 app.post('/consultations/:phone_number', async (req, res) => {
-    const { phone_number } = req.params; // Get the phone number from the URL parameters
+    const { phone_number } = req.params; 
     try {
         await pool.query('DELETE FROM consultations WHERE phone_number = $1', [phone_number]);
-        res.redirect('/protected'); // Redirect back to the consultations page after successful deletion
+        res.redirect('/protected'); 
     } catch (err) {
         console.error('Error deleting consultation:', err);
         res.status(500).send('Error deleting consultation');
@@ -168,16 +167,12 @@ app.get('/lawyers', async (req, res) => {
     }
   });
   
-  // Route to delete lawyer by phone number
   app.post('/lawyers/delete', async (req, res) => {
     const phone = req.body.phone;
     
     try {
-      // Delete lawyer by phone number
       const deleteQuery = 'DELETE FROM lawyers WHERE phone = $1';
       await pool.query(deleteQuery, [phone]);
-      
-      // Redirect back to the lawyers list after deletion
       res.redirect('/lawyers');
     } catch (err) {
       console.error('Error deleting lawyer:', err);

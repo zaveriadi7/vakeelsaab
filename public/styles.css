@@ -12,7 +12,7 @@ body{
   font-family: "Montserrat", sans-serif;
   height: auto;
   width: 100%;
-  /* background: linear-gradient(135deg,#FFBD73,#C6E7FF,#D4F6FF,#FBFBFB,#FFDDAE); */
+  
   background: linear-gradient(to right, #e3f2fd, #ffffff);
 
 
@@ -20,7 +20,7 @@ body{
  
 nav{
   position: sticky;
-  z-index: 1000;
+  z-index:0;
   padding-top: 0px;
   font-weight: bold;
   background: #fff;
@@ -109,14 +109,14 @@ ul{
 display: flex;
 flex-direction: row;
 flex-wrap: wrap;
-gap: 80px; /* Larger gap between elements */
+gap: 80px; 
 justify-content: center;
 align-items: flex-start;
 }
 
 .card-container {
 display: flex;
-gap: 20px; /* Gap between cards */
+gap: 20px;
 flex-wrap: wrap;
 justify-content: center;
 }
@@ -127,7 +127,7 @@ border: 1px solid #ddd;
 border-radius: 10px;
 padding: 20px;
 text-align: center;
-width: 250px; /* Larger card width */
+width: 250px;
 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 min-height: 400px;
@@ -139,12 +139,12 @@ border-radius: 8px;
 }
 
 .card h3 {
-font-size: 20px; /* Larger font size */
+font-size: 20px; 
 margin: 15px 0;
 }
 
 .card p {
-font-size: 16px; /* Larger font size */
+font-size: 16px; 
 color: #555;
 }
 
@@ -159,7 +159,7 @@ border: 1px solid #ddd;
 border-radius: 10px;
 padding: 40px;
 width: 100%;
-max-width: 350px; /* Larger form width */
+max-width: 350px; 
 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -171,13 +171,13 @@ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 
 .form-container h4 {
 margin-bottom: 15px;
-font-size: 22px; /* Larger font size */
+font-size: 22px;
 text-align: center;
 }
 
 .form-container p {
 margin-bottom: 10px;
-font-size: 16px; /* Larger font size */
+font-size: 16px;
 color: #666;
 text-align: center;
 }
@@ -185,7 +185,7 @@ text-align: center;
 .form-container form {
 display: flex;
 flex-direction: column;
-gap: 10px; /* Larger gap between form fields */
+gap: 10px; 
 }
 
 .form-container input {
@@ -215,20 +215,20 @@ background: #0056b3;
 .container {
   flex-direction: column;
   align-items: center;
-  gap: 30px; /* Adjust gap for smaller screens */
+  gap: 30px; 
 }
 
 .card-container {
-  gap: 15px; /* Reduced gap for smaller screens */
+  gap: 15px;
 }
 
 .card {
-  width: 220px; /* Smaller card width for tablets */
+  width: 220px; 
 
 }
 
 .form-container {
-  max-width: 320px; /* Adjusted form width for tablets */
+  max-width: 320px;
 }
 }
 
@@ -236,11 +236,11 @@ background: #0056b3;
 .card {
   
   height:auto;
-  width: 70%; /* Full-width cards for mobile */
+  width: 70%; 
 }
 
 .form-container {
-  max-width: 70%; /* Full-width form for mobile */
+  max-width: 70%;
 }
 .container{
   flex-direction: column-reverse;
@@ -259,33 +259,33 @@ padding-top: 3%;
 }
 
 .heading-container h1 {
-font-size: 3rem; /* Default size for large screens */
+font-size: 3rem; 
 color: #333;
 margin-bottom: 10px;
 }
 
 .heading-container p {
-font-size: 1.5rem; /* Default size for large screens */
+font-size: 1.5rem; 
 color: #131212;
 }
 
 @media (max-width: 768px) {
 .heading-container h1 {
-  font-size: 2.5rem; /* Adjust size for tablets */
+  font-size: 2.5rem;
 }
 
 .heading-container p {
-  font-size: 1.2rem; /* Adjust size for tablets */
+  font-size: 1.2rem; 
 }
 }
 
 @media (max-width: 480px) {
 .heading-container h1 {
-  font-size: 2rem; /* Adjust size for mobile */
+  font-size: 2rem; 
 }
 
 .heading-container p {
-  font-size: 1rem; /* Adjust size for mobile */
+  font-size: 1rem; 
 }
 }
 
@@ -446,7 +446,7 @@ color: #131212;
 
 .reviews-carousel {
   display: flex;
-  overflow-x: hidden; /* Hides content that scrolls out of view */
+  overflow-x: hidden; 
   gap: 15px;
   padding: 10px;
   scroll-behavior: smooth;
@@ -476,7 +476,7 @@ color: #131212;
 }
 
 .reviews-carousel::-webkit-scrollbar {
-  display: none; /* Hides the scrollbar for a cleaner look */
+  display: none; /* Hide scrollbar */
 }
 
 
@@ -484,16 +484,16 @@ color: #131212;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #f8f9fa; /* Light gray background */
-  color: #000; /* Text color */
+  background-color: #f8f9fa; 
+  color: #000; 
   text-align: center;
-  padding: 10px 0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow above the footer */
+  
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
 }
 
 
-
-
-
-
-
+nav{
+  position:sticky;
+  top: 0;
+  overflow: hidden;
+}

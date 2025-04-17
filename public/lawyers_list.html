@@ -20,23 +20,23 @@
   * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Ensure padding and border are included in dimensions */
+    box-sizing: border-box; 
   }
   
   body, html {
-    height: 100%; /* Ensure body and HTML take full height */
+    height: 100%;
   }
   
 .form-container {
   background: #ffffff;
   border: 1px solid #ddd;
   border-radius: 10px;
-  width: 90%; /* Make the form wider */
-  max-width: 1200px; /* Limit maximum width */
+  width: 100%; 
+  max-width: 1200px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 20px auto; /* Center horizontally and add space around */
-  padding: 20px; /* Add padding inside the form */
+  margin: 20px auto; 
+  padding: 20px; 
 }
 
 .form-container:hover {
@@ -46,13 +46,13 @@
 
 .form-container h3 {
   margin-bottom: 15px;
-  font-size: 22px; /* Larger font size */
+  font-size: 22px; 
   text-align: center;
 }
 
 .form-container p {
   margin-bottom: 10px;
-  font-size: 16px; /* Larger font size */
+  font-size: 16px; 
   color: #666;
   text-align: center;
 }
@@ -60,7 +60,7 @@
 .form-container form {
   display: flex;
   flex-direction: column;
-  gap: 16px; /* Larger gap between form fields */
+  gap: 16px; 
 }
 
 .form-container input  label{
@@ -86,7 +86,6 @@
 .form-container button:hover {
   background: #0056b3;
 }
-/* Styling for the form container and elements (already applied) */
 
 .form-container input,
 .form-container select,
@@ -97,6 +96,8 @@
   border-radius: 5px;
   width: 100%;
 }
+
+
 
 </style>
 
@@ -137,7 +138,7 @@ function googleTranslateElementInit() {
     <div class="form-container">
         <h3>Please give your details</h3>
         <p> This helps us to show you relevant clients</p>
-        <!-- lawyer_form.ejs -->
+        
 <form action="/submit-lawyer" method="POST">
     <div>
         <label for="first_name">First Name:</label>
@@ -197,11 +198,14 @@ function googleTranslateElementInit() {
 
 <br>
 
-<div class=" heading-container footer-div" style="background: white;">
-  <p class="footer"><strong>Vakeel Saab Online</strong></p>
-  <br>
-  <p class="footer">Copyright 2024 Vakeel Saab Online. All rights reserved.</p>
-  
-</div>
-
+<div class="footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2 class="logo-text">Vakeel Saab Online</h2>
+        <p>
+          Vakeel Saab Online is a platform that connects clients with lawyers. We help you to find the right clients for your legal domains.
+        </p>
+      </div>
+      </div>
+      </div>
 </body>
